@@ -3,7 +3,7 @@ from DE_Module import DE as evo
 
 #Hyper_parmaeters
 F =  0.5 
-Cr = 0.1
+Cr = 0.2
 
 
 N = 50

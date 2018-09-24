@@ -1,6 +1,6 @@
 import numpy as np
 import random as rnd
-import Species_class as genome
+from Species_Module import Species_class as genome
 import mutation as mu
 
 

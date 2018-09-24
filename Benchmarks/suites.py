@@ -28,7 +28,7 @@ class suite_2D:
         with open('Benchmarks/2D_outputs/2D_Results.text', 'w') as f:
             for function, limit in zip(self.suite_2D, self.bounds_2D):
                 f.write('Function: '+function.__name__+'\n')
-                f.write("{: <5} {: <20} {: <40} {: <20}\n".format('Run', 'Best', 'Best vector', 'Mean'))
+                f.write("{: <5} {: <20} {: <40} {: <20}\n".format('Run', 'Best', 'Mean', 'std'))
                 b = []
                 m = []
                 for run in range(n_runs):
