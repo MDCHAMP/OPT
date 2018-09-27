@@ -28,9 +28,10 @@ class suite_2D:
         with open('Benchmarks/2D_outputs/2D_Results.text', 'w') as f:
             for function, limit in zip(self.suite_2D, self.bounds_2D):
                 f.write('Function: '+function.__name__+'\n')
-                f.write("{: <5} {: <20} {: <40} {: <20}\n".format('Run', 'Best', 'Mean', 'std'))
+                f.write("{: <5} {: <15} {: <15} {: <15}\n".format('Run', 'Best', 'Mean', 'std'))
                 b = []
                 m = []
+                v = []
                 for run in range(n_runs):
                     actual = self.evo(self.hypers, self.pop_param, limit, function)
                     actual.run()
@@ -38,17 +39,17 @@ class suite_2D:
                     best = actual.genome.gen[actual.gen].best_fit()
                     best_vect = actual.genome.gen[actual.gen].best().dna
                     mean = actual.genome.gen[actual.gen].mean_fit()
+                    std = actual.genome.gen[actual.gen].std_fit()
                     
                     b.append(best)
+                    v.append(best_vect)
                     m.append(mean)
                     
-                    f.write("{: <5} {: <10,.04f} {: <30} {: <10,.04f}\n".format(run+1,best,list(best_vect),mean))
+                    f.write("{: <5} {: <15,.10f} {: <15,.10f} {: <15,.10f}\n".format(run+1,best,mean,std))
                     
-                f.write('\nOverall best fitness: '+str(min(b))+'\n')
-                f.write('Achieved by parameters: '+''+'\n')
+                f.write('Overall best fitness: '+str(min(b))+'\n')
+                f.write('Achieved by parameters: '+str(v[b.index(min(b))])+'\n')
                 f.write('True global minima is at: '+'[0.,0.]'+'\n\n\n')
-                
-                
                 
                 actual.genome.convergence_plot('Benchmarks/2D_outputs/2D_benchmark_convergence_plot_for_'+function.__name__+'.png', 20)
 

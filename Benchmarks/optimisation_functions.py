@@ -20,6 +20,13 @@ def Ackleys (vector):# Fitness function [Ackleys] ND problem GM@ x_i = 0 f(X) = 
 	return y
 # SADE is able to find the GM reliably with 7-9k function calls
 
+def Ackley_score(best, nfe):
+	gm    = [0,0]
+	diff  = 1
+	mse   = (gm-best)**2
+	score = (mse * nfe / diff)
+	
+
 def Bukin6 (vector): # Fitness function [Buking no6] 2D problem GM@ [-10, 1] f(x) = 0
 	x1 = vector[0] #evaluate on [-15, 5]
 	x2 = vector[1] #evaluate on [-3, 3]
@@ -90,6 +97,3 @@ def griewank (vector): #Fitness function [griewank] ND problem GM@ xi = 0 f(x) =
 
 
 
-
-####################### testcall
-print(griewank([0, 0, 0.5, 0.1, 100]))
