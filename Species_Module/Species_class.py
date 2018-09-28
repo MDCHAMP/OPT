@@ -166,3 +166,11 @@ class species:
         plt.savefig(name)    
 
 
+    def export_genome(self, filename):
+        with open((filename+'.csv'), 'w') as c:
+            for i, gen in enumerate(self.gen):
+                for j, gene in enumerate(gen.pool):
+                    astr = ''
+                    for element in gene.dna:
+                        astr += str(element)+','
+                    c.write(str(i)+','+str(j)+','+astr+str(gene.fitness)+'\n')
