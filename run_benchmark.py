@@ -1,25 +1,24 @@
 from Benchmarks import suites 
-from DE_Module import DE as evo
+from DE_Module import DE as evo1
+from SADE_Module import SADE as evo2
 
-
-#To Run: python -m Benchmarks.run_benchmark.py
-#
 
 #Hyper_parmaeters
-F =  0.5 
-Cr = 0.2
+Fm =  0.9 
+Crm = 0.5
+lp = 20
 #Pop_param
-N = 50
+N = 100
 D = 2
-gen_max = 100
+gen_max = 1000
 
-hypers = [F, Cr]
+hypers = [Fm, Crm, lp]
 pop_param = [N, 2, gen_max]
 
-Test1 = suites.suite_2D(evo.DE, hypers, pop_param)
-Test1.run(10)
+#Test1 = suites.suite_2D(evo2.SADE, hypers, pop_param)
+#Test1.run(10)
 
-hypers = [F, Cr]
+hypers = [Fm, Crm, lp]
 pop_param = [N, 8, gen_max]
-Test2 = suites.suite_ND(evo.DE, hypers, pop_param)
-Test2.run(10) 
+Test2 = suites.suite_ND(evo2.SADE, hypers, pop_param)
+Test2.run(1)

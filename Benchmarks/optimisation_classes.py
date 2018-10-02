@@ -66,13 +66,13 @@ class griewank:
 	
 	def __init__(self, D):
 		self.bounds = [[-600, 600]]*D
-		self.gm = 0
+		self.gm = 0.0
 		self.truth = [0.0]*D
 		self.roof = 10.0
 
 
 	def fit (self, vector): #Fitness function [griewank] ND problem GM@ xi = 0 f(x) = 0
-		d = len(vector) - 3 #accounting for R, CR and fitness values
+		d = len(vector) #accounting for R, CR and fitness values
 		sum = 0
 		prod = 1
 		for i in range(d):
@@ -88,7 +88,7 @@ class bukin6:
 	def __init__(self):
 		self.bounds = [[-15,5],[-3,3]]
 		self.gm = 0.0
-		self.truth = [-10,0.0]
+		self.truth = [-10,1.0]
 		self.roof = 20
 	
 	def fit (self, vector): # Fitness function [Buking no6] 2D problem GM@ [-10, 1] f(x) = 0

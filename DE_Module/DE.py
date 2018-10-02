@@ -1,7 +1,7 @@
 import numpy as np
 import random as rnd
 from Species_Module import Species_class as genome
-import mutation as mu
+import DE_mutation as mu
 
 
 class DE:
@@ -9,11 +9,8 @@ class DE:
     def __init__(self, hypers, pop_param, bounds, fitness):
         
         self.F, self.Cr = hypers
-        
         self.N, self.D, self.Gen_max = pop_param
-        
         self.bounds = bounds
-        
         self.fitness = fitness
         
         self.genome = genome.species(self.N, self.D, self.Gen_max)
@@ -21,24 +18,21 @@ class DE:
         self.genome.initial_fit(self.fitness)
         self.gen = 0
         
-
         
     def generation(self):
 
         pop = self.genome.gen[self.gen]
-        donor = pop.return_rnd(1)[0].dna
-        Irand = rnd.randint(0, self.D)
         
         for gene in pop.pool:
             
             gene.trial = mu.rand1(pop, self.F, gene.n)
             gene.apply_bounds(self.bounds)
             
-            for i, donor_dna in enumerate(donor):
-
-                if rnd.uniform(0, 1) < self.Cr or i == Irand:
-                   gene.trial[i] = donor_dna
-                   
+            crossover_key = np.random.rand(self.D) > self.Cr
+            if np.any(crossover_key):
+                crossover_key[0] = False
+            gene.trial = np.where(crossover_key, gene.dna, gene.trial)
+            
             new_fitness = self.fitness(gene.trial)
         
             if new_fitness < gene.fitness:

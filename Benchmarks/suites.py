@@ -44,7 +44,8 @@ class suite_2D:
                     
                 f.write('Overall best fitness: '+str(min(b))+'\n')
                 f.write('Achieved by parameters: '+str(v[b.index(min(b))])+'\n')
-                f.write('True global minima is at: '+str(function.gm)+'\n\n\n')
+                f.write('True global minima is at: '+str(function.gm)+'\n')
+                f.write('True best parameters are: '+str(function.truth)+'\n\n\n')
                 
                 best_genome.convergence_plot('Benchmarks/2D_outputs/Best_2D_benchmark_convergence_plot_for_'+function.__class__.__name__+'.png', function.roof)
                 best_genome.export_genome('Benchmarks/2D_outputs/Best_genome_for_'+function.__class__.__name__)
@@ -55,7 +56,7 @@ class suite_ND:
 
         N, D, gen = pop_param
         self.D = D
-        self.suite_ND = [opt.ackleys(N), opt.sphereN(N), opt.sumsquares(N), opt.griewank(N)]
+        self.suite_ND = [opt.ackleys(D), opt.sphereN(D), opt.sumsquares(D), opt.griewank(D)]
         self.pop_param = [N, D, gen]
         self.evo = optimiser
         self.hypers = optimiser_hypers
@@ -90,7 +91,8 @@ class suite_ND:
                     
                 f.write('Overall best fitness: '+str(min(b))+'\n')
                 f.write('Achieved by parameters: '+str(v[b.index(min(b))])+'\n')
-                f.write('True global minima is at: '+str(function.gm)+'\n\n\n')
+                f.write('True global minima is at: '+str(function.gm)+'\n')
+                f.write('True best parameters are: '+str(function.truth)+'\n\n\n')
                 
                 best_genome.convergence_plot('Benchmarks/'+str(self.D)+'D_outputs/Best_'+str(self.D)+'D_benchmark_convergence_plot_for_'+function.__class__.__name__+'.png', function.roof)
                 best_genome.export_genome('Benchmarks/'+str(self.D)+'D_outputs/Best_genome_for_'+function.__class__.__name__)
